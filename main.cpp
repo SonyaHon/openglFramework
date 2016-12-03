@@ -43,10 +43,9 @@ int main() {
 
 void loop() {
     model.draw(game.getScene().getView(), game.getScene().getProjection());
-    if (glfwGetKey(game.getWindow(),
-      GLFW_KEY_A) == GLFW_PRESS) {
-        game.getScene().cameraTranslate(-1.0f, 0.0f, 0.0f);
+    if (glfwGetKey(game.getWindow(), GLFW_KEY_A) == GLFW_PRESS) {
+        model.translate(-0.1f, 0.0f, 0.0f);
     } else if (glfwGetKey(game.getWindow(), GLFW_KEY_D) == GLFW_PRESS) {
-        game.getScene().cameraTranslate(1.0f, 0.0f, 0.0f);
+        model.translate(0.1f, 0.0f, 0.0f);
     }
 }
