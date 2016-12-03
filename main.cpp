@@ -14,7 +14,7 @@
 
 void loop();
 
-GLuint vertBuffer;
+
 ve::ShaderProgramm prog;
 ve::Engine game;
 ve::Model3D model;
