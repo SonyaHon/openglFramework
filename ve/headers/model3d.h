@@ -7,6 +7,11 @@
 #include "shaderProgramm.h"
 #include <png.h>
 
+#include <assimp/Importer.hpp>  // C++ importer interface
+#include <assimp/scene.h>       // Output data structure
+#include <assimp/postprocess.h> // Post processing flags
+
+
 /*
  *   3d model is a complex model
  *   can be moved in 3d space
@@ -35,10 +40,14 @@ private:
 
     GLuint vertexbuffer;
     GLuint uvbuffer;
+    GLuint elementBuffer;
+
+    std::vector<unsigned int> indices;
 
     GLuint texture;
     GLuint png_texture_load(const char *, int *, int *);
-    bool loadOBJ(const char *, std::vector<glm::vec3> &, std::vector<glm::vec2> &, std::vector<glm::vec3> &);
+    bool loadAssImp(const char *, std::vector<unsigned int> &, std::vector<glm::vec3> &, std::vector<glm::vec2> &,
+      std::vector<glm::vec3> &);
 
 public:
     Model3D() { };
@@ -62,7 +71,7 @@ public:
         std::vector<glm::vec2> uvs;
         std::vector<glm::vec3> normals;
 
-        loadOBJ(filename.c_str(), verts, uvs, normals);
+        loadAssImp(filename.c_str(), indices, verts, uvs, normals);
 
         glGenBuffers(1, &vertexbuffer);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -71,6 +80,10 @@ public:
         glGenBuffers(1, &uvbuffer);
         glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
         glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec3), &uvs[0], GL_STATIC_DRAW);
+
+        glGenBuffers(1, &elementBuffer);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
     };
 
     void draw(glm::mat4, glm::mat4);

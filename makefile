@@ -1,5 +1,5 @@
 all: scene.o main.o engine.o model3d.o shader.o model2d.o shaderProgramm.o
-	g++ scene.o shader.o shaderProgramm.o model2d.o model3d.o engine.o main.o -std=c++11 -lGL -lGLEW -lglfw -lpng -o out
+	g++ scene.o shader.o shaderProgramm.o model2d.o model3d.o engine.o main.o -lassimp -std=c++11 -lGL -lGLEW -lglfw -lpng -o out
 	rm *.o
 
 main.o:

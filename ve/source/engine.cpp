@@ -38,6 +38,26 @@ Engine::Engine(float width, float height, const char * name, int mode) {
     glBindVertexArray(VAO);
 }
 
+void Engine::cameraTranslate(float x, float y, float z) {
+    mainScene.cameraTranslate(x, y, z);
+}
+
+void Engine::cameraRotate(float a, float x, float y, float z) {
+    mainScene.cameraRotate(a, x, y, z);
+}
+
+void Engine::cameraLookAt(float x, float y, float z) {
+    mainScene.cameraLookAt(x, y, z);
+}
+
+glm::mat4 Engine::getView() {
+    mainScene.getView();
+}
+
+glm::mat4 Engine::getProjection() {
+    mainScene.getProjection();
+}
+
 Scene Engine::getScene() {
     return mainScene;
 }

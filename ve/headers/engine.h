@@ -41,6 +41,13 @@ public:
     void addModel(Model3D);
     void addModel(Model2D);
 
+    void cameraTranslate(float, float, float);
+    void cameraRotate(float, float, float, float);
+    void cameraLookAt(float, float, float);
+
+    glm::mat4 getView();
+    glm::mat4 getProjection();
+
     void setClearColor(GLfloat, GLfloat, GLfloat, GLfloat);
 };
 }

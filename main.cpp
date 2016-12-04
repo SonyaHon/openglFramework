@@ -32,7 +32,7 @@ int main() {
 
     game.addModel(model);
 
-    // TODO  model2d sprite uv generation model3d .obj uploading
+    // TODO  model2d sprite
     // then screen working options: fullscreen etc
     // collisions of model2d and model3d
 
@@ -43,9 +43,15 @@ int main() {
 
 void loop() {
     model.draw(game.getScene().getView(), game.getScene().getProjection());
+
     if (glfwGetKey(game.getWindow(), GLFW_KEY_A) == GLFW_PRESS) {
-        model.translate(-0.1f, 0.0f, 0.0f);
+        game.cameraTranslate(0.1f, 0.0f, 0.0f);
     } else if (glfwGetKey(game.getWindow(), GLFW_KEY_D) == GLFW_PRESS) {
-        model.translate(0.1f, 0.0f, 0.0f);
+        game.cameraTranslate(-0.1f, 0.0f, 0.0f);
+    }
+    if (glfwGetKey(game.getWindow(), GLFW_KEY_W) == GLFW_PRESS) {
+        game.cameraTranslate(0.0f, 0.0f, 0.1f);
+    } else if (glfwGetKey(game.getWindow(), GLFW_KEY_S) == GLFW_PRESS) {
+        game.cameraTranslate(0.0f, 0.0f, -0.1f);
     }
 }
