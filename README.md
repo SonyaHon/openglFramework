@@ -7,3 +7,4 @@
 - assimp
 - glm
 - GLEW
+- png
